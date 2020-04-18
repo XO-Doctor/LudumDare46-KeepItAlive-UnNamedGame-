@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new item", menuName = "item")]
 public class Item : ScriptableObject
 {
-    public GameObject thisitem;
-    public string itemName;
-    public string description;
-    public Sprite icon;
-    public bool stackable;
+    
+    public string Name;
+    public string Description;
+    public Sprite Icon;
+    public bool Stackable;
 }

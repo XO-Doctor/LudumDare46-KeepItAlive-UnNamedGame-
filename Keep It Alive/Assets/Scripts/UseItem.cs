@@ -84,15 +84,8 @@ public class useItems : MonoBehaviour
             {
                 GameObject go = slots[selectedslot].transform.GetChild(2).gameObject;
                 Item scriptableitem = go.GetComponent<ItemObject>().item;
-                print("hello");
-                if (scriptableitem.GetType() == typeof(Solids))
-                {
-                    print("Solid");
-                }
-                if (scriptableitem.GetType() == typeof(Liquid))
-                {
-                    print("liquid");
-                }
+               
+                
             }
         }
     }

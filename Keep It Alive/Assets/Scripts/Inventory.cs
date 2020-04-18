@@ -38,10 +38,10 @@ public class Inventory : MonoBehaviour
             GameObject itempickedup = collision.gameObject;
             ItemObject itemobject = itempickedup.GetComponent<ItemObject>();
 
-            AddItem(itempickedup, itemobject.item.itemName, itemobject.item.description, itemobject.item.icon, itemobject.item.stackable, itemobject.item.thisitem);
+            AddItem(itempickedup, itemobject.item.Name, itemobject.item.Description, itemobject.item.Icon, itemobject.item.Stackable, itempickedup);
         }
 
-        void AddItem(GameObject itemObject, string Itemname, string ItemDescription, Sprite ItemIcon, bool stackable, GameObject itemprefab)
+        void AddItem(GameObject itemObject, string Itemname, string ItemDescription, Sprite ItemIcon, bool stackable, GameObject itemGameObject)
         {
             for (int i = 0; i < allSlots; i++)
             {
@@ -65,16 +65,16 @@ public class Inventory : MonoBehaviour
                 {
                     //add item
 
-                    slot[i].GetComponent<Slot>().item = itemprefab;
+                    slot[i].GetComponent<Slot>().item = itemGameObject;
                     slot[i].GetComponent<Slot>().Itemname = Itemname;
                     slot[i].GetComponent<Slot>().icon = ItemIcon;
                     slot[i].GetComponent<Slot>().description = ItemDescription;
                     slot[i].GetComponent<Slot>().amount = 1;
                     slot[i].GetComponent<Slot>().stackable = stackable;
 
-                    GameObject parenteditem = Instantiate(itemprefab, slot[i].transform);
-                    parenteditem.SetActive(false);
-                    Destroy(itemObject);
+                    
+                    itemGameObject.SetActive(false);
+                    
 
                     slot[i].GetComponent<Slot>().UpdateSlot();
                     slot[i].GetComponent<Slot>().empty = false;

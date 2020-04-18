@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     private bool movingright;
     private bool movingup;
 
+    public Rigidbody2D rigidbody;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -87,7 +89,7 @@ public class Player : MonoBehaviour
         
 
         //Move
-        transform.Translate(movement * Speed * Time.deltaTime);
+        rigidbody.velocity = movement * Speed * Time.deltaTime;
 
 
     }
