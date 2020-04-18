@@ -32,9 +32,9 @@ public class Inventory : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("iteta");
         if (collision.tag == "item")
         {
+            Debug.Log("iteta");
             GameObject itempickedup = collision.gameObject;
             ItemObject itemobject = itempickedup.GetComponent<ItemObject>();
 

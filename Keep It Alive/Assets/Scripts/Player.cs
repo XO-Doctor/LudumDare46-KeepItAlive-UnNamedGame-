@@ -5,7 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
- 
+    public bool Wpressed;
+    public bool Apressed;
+    public bool Spressed;
+    public bool Dpressed;
+
     public float Speed;
 
     private bool isMovingVertically = false;
@@ -31,59 +35,64 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        if(vertical < 0)
+        if(vertical > 0)
         {
-
-                direction = 0;
-                movingup = true;
-                movingright = false;
-
-            
+            if (!Wpressed)
+            {
+                Wpressed = true;
+                direction = 1;
+            }
         }
 
         if (horizontal < 0)
         {
-            
-                direction = 1;
-                movingright = true;
-                movingup = false;
-            
-
+            if (!Apressed)
+            {
+                Apressed = true;
+                direction = 2;
+            }
         }
 
-        if (vertical > 0)
+        if (vertical < 0)
         {
-            
-                direction = 2;
-                movingup = true;
-                movingright = false;
-            
-
+            if (!Spressed)
+            {
+                Spressed = true;
+                direction = 3;
+            }
         }
 
         if (horizontal > 0)
         {
-            
-                direction = 3;
-                movingright = true;
-                movingup = false;
-            
-
+            if (!Dpressed)
+            {
+                Dpressed = true;
+                direction = 4;
+            }
         }
 
+        if (horizontal == 0)
+        {
+            Apressed = false;
+            Dpressed = false;
+        }
 
-
+        if (vertical == 0)
+        {
+            Wpressed = false;
+            Spressed = false;
+        }
 
         Vector2 movement = Vector2.zero;
-
-        if (movingup)
+        if(direction == 1 || direction == 3)
         {
             movement += (vertical * Vector2.up).normalized;
         }
-        if (movingright)
+        if (direction == 2 || direction == 4)
         {
             movement += (horizontal * Vector2.right).normalized;
         }
+       
         
        
         

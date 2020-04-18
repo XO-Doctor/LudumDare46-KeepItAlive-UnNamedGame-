@@ -29,7 +29,6 @@ public class Slot : MonoBehaviour
 
     public void clearSlot()
     {
-        Destroy(transform.GetChild(2).gameObject);
         item = null;
         Itemname = null;
         type = null;
@@ -70,6 +69,10 @@ public class Slot : MonoBehaviour
             {
                 item = swap.item;
                 GameObject parenteditem = Instantiate(item, transform);
+                if(transform.childCount > 2)
+                {
+                    Destroy(transform.GetChild(2).gameObject);
+                }
                 parenteditem.SetActive(false);
                 Itemname = swap.itemname;
                 type = swap.itemType;
