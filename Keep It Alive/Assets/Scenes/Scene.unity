@@ -4079,6 +4079,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1521c8271a7d43e49b6f304f9b91c233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Wpressed: 0
+  Apressed: 0
+  Spressed: 0
+  Dpressed: 0
   Speed: 200
   direction: 0
   rigidbody: {fileID: 1674513771}

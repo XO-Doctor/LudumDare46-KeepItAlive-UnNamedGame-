@@ -17,3 +17,4 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 32e7570e99fca33408cd9de4a548d250, type: 3}
   Stackable: 1
   PH: 7
+  InfluenceColor: {r: 0.8773585, g: 0.96349347, b: 1, a: 0.18431373}
