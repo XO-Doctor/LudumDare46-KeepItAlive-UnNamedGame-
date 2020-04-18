@@ -6,14 +6,15 @@ public class Player : MonoBehaviour
 {
 
  
-
-
     public float Speed;
 
     private bool isMovingVertically = false;
     private bool isMovingHorizontally = false;
 
-    int direction;
+    public int direction;
+
+    private bool movingright;
+    private bool movingup;
 
 
     // Start is called before the first frame update
@@ -30,26 +31,42 @@ public class Player : MonoBehaviour
 
         if(vertical < 0)
         {
-            direction = 0;
+
+                direction = 0;
+                movingup = true;
+                movingright = false;
+
             
         }
 
         if (horizontal < 0)
         {
-            direction = 1;
             
+                direction = 1;
+                movingright = true;
+                movingup = false;
+            
+
         }
 
         if (vertical > 0)
         {
-            direction = 2;
             
+                direction = 2;
+                movingup = true;
+                movingright = false;
+            
+
         }
 
         if (horizontal > 0)
         {
-            direction = 3;
-           
+            
+                direction = 3;
+                movingright = true;
+                movingup = false;
+            
+
         }
 
 
@@ -57,11 +74,14 @@ public class Player : MonoBehaviour
 
         Vector2 movement = Vector2.zero;
 
-        //put if statements here
-        movement += (vertical * Vector2.up).normalized;
-        
-        //and here
-        movement += (horizontal * Vector2.right).normalized;
+        if (movingup)
+        {
+            movement += (vertical * Vector2.up).normalized;
+        }
+        if (movingright)
+        {
+            movement += (horizontal * Vector2.right).normalized;
+        }
         
        
         
