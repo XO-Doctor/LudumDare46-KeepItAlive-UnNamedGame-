@@ -17,5 +17,5 @@ MonoBehaviour:
   itemName: Red
   description: A Red Cube
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  stackable: 0
+  stackable: 1
   applebeanSOlid: 1
