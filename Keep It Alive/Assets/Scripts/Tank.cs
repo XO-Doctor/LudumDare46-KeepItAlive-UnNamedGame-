@@ -8,30 +8,52 @@ public class Tank : MonoBehaviour
     public float Temperature = 20;
     public float Pressure = 0;
     public float Hunger = 0;
+    public Slot chemSlot;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(UpdateTank());
     }
 
-    // Update is called once per frame
-    void Update()
+    //change everything in ienumerator
+    IEnumerator UpdateTank()
     {
-        
+        yield return new WaitForSeconds(3);
+        Debug.Log("change settings");
+        if(Hunger >= 200 || Hunger <= 0)
+        {
+
+        }
+        if (Temperature >= 40 || Temperature <= 0)
+        {
+
+        }
+        if (PH >= 14 || PH <= 0)
+        {
+
+        }
+        if (Pressure >= 50 || Pressure <= 0)
+        {
+
+        }
+        StartCoroutine(UpdateTank());
     }
 
-    //change pressure in ienumerator
-
-
-    public void Inject(Chemical chemical)
+    public void Inject()
     {
-        PH += (chemical.PH - 7) * (1 / 7);  //change the ph
+        if (chemSlot.item != null)
+        {
+            Chemical chem = chemSlot.item.GetComponent<Chemical>();
+            chemSlot.clearSlot();
 
-        Temperature += chemical.Temperature;
-        Temperature *= 0.5f;                //average the temperature
+            Hunger += chem.hunger;
 
+            PH += chem.PH;  
+            PH *= 0.5f;
 
-
+            Temperature += chem.Temperature;
+            Temperature *= 0.5f;                
+        }
     }
 }

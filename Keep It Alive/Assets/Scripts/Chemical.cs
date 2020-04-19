@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum Effects
 {
+    Hot,
+    Cold,
     Mutate,
     Posion,
     Drunk,
@@ -21,15 +23,17 @@ public enum Effects
 
 public class Chemical : Item
 {
-    public bool Solid;
+    public float Temperature;
+    public float hunger;
     public float PH;
+
+    public bool Solid;
+
     public Color Color;
     public Sprite liquidSPRITE;
 
     public float BurnTemperature;
     public float FreezeTemperature;
-
-    public float Temperature;
 
     public List<Effects> Effects = new List<Effects>();
     public List<int> EffectIntensities = new List<int>();
