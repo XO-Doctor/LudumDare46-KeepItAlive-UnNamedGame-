@@ -41,6 +41,13 @@ public class PotionDisplay : MonoBehaviour
                 selectedslot++;
                 slots[selectedslot].GetComponent<Image>().sprite = SelectedSprite;
             }
+            if (active)
+            {
+                if (!slots[selectedslot].GetComponent<Slot>().empty)
+                {
+                    calculate();
+                }
+            }
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
@@ -54,6 +61,13 @@ public class PotionDisplay : MonoBehaviour
             {
                 selectedslot--;
                 slots[selectedslot].GetComponent<Image>().sprite = SelectedSprite;
+            }
+            if (active)
+            {
+                if (!slots[selectedslot].GetComponent<Slot>().empty)
+                {
+                    calculate();
+                }
             }
         }
 
@@ -85,7 +99,7 @@ public class PotionDisplay : MonoBehaviour
             {
                 display.transform.GetChild(i).GetComponent<Slider>().value = tank.Hunger;
                 Transform slider = display.transform.GetChild(i);
-                slider.GetChild(0).GetComponent<Slider>().value = (tank.Hunger + slots[selectedslot].GetComponent<Slot>().item.gameObject.GetComponent<Chemical>().hunger) / 2;
+                slider.GetChild(0).GetComponent<Slider>().value = (tank.Hunger + slots[selectedslot].GetComponent<Slot>().item.gameObject.GetComponent<Chemical>().hunger);
             }
             if (i == 1)
             {

@@ -19,7 +19,7 @@ public class Tank : MonoBehaviour
     //change everything in ienumerator
     IEnumerator UpdateTank()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(20);
         Debug.Log("change settings");
         if(Hunger >= 200 || Hunger <= 0)
         {

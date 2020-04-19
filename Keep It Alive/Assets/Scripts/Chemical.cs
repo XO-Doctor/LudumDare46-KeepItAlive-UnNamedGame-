@@ -44,7 +44,10 @@ public class Chemical : Item
     // Start is called before the first frame update
     void Start()
     {
-        Liquid.color = Color;
+        if(!Solid)
+        {
+            Liquid.color = Color;
+        }
     }
 
     // Update is called once per frame
@@ -108,7 +111,10 @@ public class Chemical : Item
 
     public override void OnPickup()
     {
-        Liquid.enabled = false;
+        if (!Solid)
+        {
+            Liquid.enabled = false;
+        }
     }
 
     void RecalculateValues(Chemical chemical)

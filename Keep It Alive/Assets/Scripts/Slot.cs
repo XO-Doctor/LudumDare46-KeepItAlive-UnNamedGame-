@@ -115,6 +115,23 @@ public class Slot : MonoBehaviour
                         sloticonGO.GetComponent<Image>().color = col;
                         text.text = amount.ToString();
                     }
+                    else
+                    {
+                        item = swap.item;
+                        liquidSP = swap.liquidSPR;
+                        col = swap.col;
+                        solid = swap.solid;
+                        Itemname = swap.itemname;
+                        type = swap.itemType;
+                        description = swap.desription;
+                        icon = swap.icon;
+                        stackable = swap.stackable;
+                        swap.holding = false;
+                        amount = swap.amount;
+                        empty = false;
+                        sloticonGO.GetComponent<Image>().enabled = true;
+                        sloticonGO.GetComponent<Image>().sprite = icon;
+                    }
                 }
             }
         }
