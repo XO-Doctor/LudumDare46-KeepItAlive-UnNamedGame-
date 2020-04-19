@@ -24,6 +24,7 @@ public class Chemical : Item
     public bool Solid;
     public float PH;
     public Color Color;
+    public Sprite liquidSPRITE;
 
     public float BurnTemperature;
     public float FreezeTemperature;

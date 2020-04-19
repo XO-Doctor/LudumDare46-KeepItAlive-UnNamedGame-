@@ -12,11 +12,17 @@ public class Slot : MonoBehaviour
     public int amount;
     public bool empty;
     public Swap swap;
+    public Color col;
+    public bool solid;
+    public Sprite liquidSP;
+    public Sprite liquidCube;
 
     public Transform sloticonGO;
     public Text text;
     public Sprite icon;
     public bool stackable;
+
+    public bool mixernaterTop;
 
     private void Start()
     {
@@ -37,6 +43,10 @@ public class Slot : MonoBehaviour
         text.text = 0.ToString();
         icon = null;
         sloticonGO.GetComponent<Image>().enabled = false;
+        if(sloticonGO.childCount != 0)
+        {
+            Destroy(sloticonGO.GetChild(0).gameObject);
+        }
     }
 
     public void select()
@@ -45,7 +55,7 @@ public class Slot : MonoBehaviour
         {
             if (!swap.holding)
             {
-                swap.grabslot(item, Itemname, description, amount, icon, stackable);
+                swap.grabslot(item, Itemname, description, amount, icon, stackable, col, solid, liquidSP);
                 empty = true;
                 clearSlot();
             }
@@ -66,23 +76,45 @@ public class Slot : MonoBehaviour
         {
             if (swap.holding)
             {
-                
-                item = swap.item;
-                GameObject parenteditem = Instantiate(item, transform);
-                if(transform.childCount > 2)
+                if (!mixernaterTop)
                 {
-                    Destroy(transform.GetChild(2).gameObject);
+                    item = swap.item;
+                    liquidSP = swap.liquidSPR;
+                    col = swap.col;
+                    solid = swap.solid;
+                    Itemname = swap.itemname;
+                    type = swap.itemType;
+                    description = swap.desription;
+                    icon = swap.icon;
+                    stackable = swap.stackable;
+                    swap.holding = false;
+                    amount = swap.amount;
+                    empty = false;
+                    UpdateSlot();
                 }
-                parenteditem.SetActive(false);
-                Itemname = swap.itemname;
-                type = swap.itemType;
-                description = swap.desription;
-                icon = swap.icon;
-                stackable = swap.stackable;
-                swap.holding = false;
-                amount = swap.amount;
-                empty = false;
-                UpdateSlot();
+                else
+                {
+                    if (!swap.solid)
+                    {
+                        item = swap.item;
+                        liquidSP = swap.liquidSPR;
+                        col = swap.col;
+                        solid = swap.solid;
+                        Itemname = swap.itemname;
+                        type = swap.itemType;
+                        description = swap.desription;
+                        icon = swap.icon;
+                        stackable = swap.stackable;
+                        swap.holding = false;
+                        amount = swap.amount;
+                        empty = false;
+
+                        sloticonGO.GetComponent<Image>().enabled = true;
+                        sloticonGO.GetComponent<Image>().sprite = liquidCube;
+                        sloticonGO.GetComponent<Image>().color = col;
+                        text.text = amount.ToString();
+                    }
+                }
             }
         }
     }
@@ -95,7 +127,7 @@ public class Slot : MonoBehaviour
             {
                 if (!empty)
                 {
-                    swap.grabslot(item, Itemname, description, 1, icon, stackable);
+                    swap.grabslot(item, Itemname, description, 1, icon, stackable, col, solid, liquidSP);
                     amount--;
                     UpdateSlot();
                 }
@@ -116,7 +148,7 @@ public class Slot : MonoBehaviour
             {
                 if (!empty)
                 {
-                    swap.grabslot(item, Itemname, description, 1, icon, stackable);
+                    swap.grabslot(item, Itemname, description, 1, icon, stackable, col, solid, liquidSP);
                     empty = true;
                     clearSlot();
                 }
@@ -138,5 +170,12 @@ public class Slot : MonoBehaviour
         sloticonGO.GetComponent<Image>().enabled = true;
         sloticonGO.GetComponent<Image>().sprite = icon;
         text.text = amount.ToString();
+        if (!swap.solid)
+        {
+            GameObject liquid = Instantiate(sloticonGO.gameObject, sloticonGO.transform);
+            liquid.GetComponent<Image>().enabled = true;
+            liquid.GetComponent<Image>().sprite = liquidSP;
+            liquid.GetComponent<Image>().color = col;
+        }
     }
 }

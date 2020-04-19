@@ -34,14 +34,14 @@ public class Inventory : MonoBehaviour
     {
         if (collision.tag == "item")
         {
-            Debug.Log("iteta");
             GameObject itempickedup = collision.gameObject;
             Item itemobject = itempickedup.GetComponent<Item>();
+            Chemical itemchem = itempickedup.GetComponent<Chemical>();
 
-            AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup);
+            AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup, itemchem.Color, itemchem.Solid, itemchem.liquidSPRITE);
         }
 
-        void AddItem(GameObject itemObject, string Itemname, string ItemDescription, Sprite ItemIcon, bool stackable, GameObject itemGameObject)
+        void AddItem(GameObject itemObject, string Itemname, string ItemDescription, Sprite ItemIcon, bool stackable, GameObject itemGameObject, Color col, bool solid, Sprite lisp)
         {
             for (int i = 0; i < allSlots; i++)
             {
@@ -65,14 +65,17 @@ public class Inventory : MonoBehaviour
                 {
                     //add item
 
+
                     slot[i].GetComponent<Slot>().item = itemGameObject;
                     slot[i].GetComponent<Slot>().Itemname = Itemname;
                     slot[i].GetComponent<Slot>().icon = ItemIcon;
                     slot[i].GetComponent<Slot>().description = ItemDescription;
                     slot[i].GetComponent<Slot>().amount = 1;
                     slot[i].GetComponent<Slot>().stackable = stackable;
+                    slot[i].GetComponent<Slot>().col = col;
+                    slot[i].GetComponent<Slot>().solid = solid;
+                    slot[i].GetComponent<Slot>().liquidSP = lisp;
 
-                    
                     itemGameObject.SetActive(false);
                     
 
