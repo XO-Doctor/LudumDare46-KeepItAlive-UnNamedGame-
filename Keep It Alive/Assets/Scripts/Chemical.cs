@@ -102,27 +102,35 @@ public class Chemical : Item
         }
     }
 
+    public override void OnPickup()
+    {
+        Liquid.enabled = false;
+    }
+
     void RecalculateValues(Chemical chemical)
     {
 
         Name = "New Mixture";
 
-        float newPH = 7;
-
-        float newA = 0;
-        float newR = 0;
-        float newB = 0;
-        float newG = 0;
+        float newA = Color.a * Color.a;
+        float newR = Color.r * Color.r;
+        float newB = Color.b * Color.b;
+        float newG = Color.g * Color.g;
 
         //Recalculate PH value
-        newPH += (chemical.PH - 7) * (1 / 7);
+        PH += (chemical.PH - 7) * (0.2f);
+
+        //Temperature
+
+        Temperature += chemical.Temperature;
+        Temperature *= 0.5f;
 
         //Recalculate the colors
-        newR += chemical.Color.r;
-        newG += chemical.Color.g;
-        newB += chemical.Color.b;
+        newR += chemical.Color.r * chemical.Color.r;
+        newG += chemical.Color.g * chemical.Color.g;
+        newB += chemical.Color.b * chemical.Color.b;
 
-        newA += chemical.Color.a;
+        newA += chemical.Color.a * chemical.Color.a;
 
         //Add effects
 
@@ -139,14 +147,15 @@ public class Chemical : Item
 
         
 
-        newR = newR * 0.5f;
-        newG = newG * 0.5f;
-        newB = newB * 0.5f;
-        newA = newA * 0.5f;
+        newR *= 0.5f;
+        newG *= 0.5f;
+        newB *= 0.5f;
 
-        Color = new Color(newR, newG, newB, newA);
+        newA *= 0.5f;
 
-        PH = newPH;
+        Color = new Color(Mathf.Sqrt(newR), Mathf.Sqrt(newG), Mathf.Sqrt(newB), Mathf.Sqrt(newA));
+
+        
 
         Liquid.color = Color;
        

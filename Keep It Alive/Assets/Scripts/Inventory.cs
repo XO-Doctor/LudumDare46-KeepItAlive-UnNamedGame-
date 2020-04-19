@@ -76,7 +76,16 @@ public class Inventory : MonoBehaviour
                     slot[i].GetComponent<Slot>().solid = solid;
                     slot[i].GetComponent<Slot>().liquidSP = lisp;
 
-                    itemGameObject.SetActive(false);
+                    //Set the item as picked up.
+                    itemObject.GetComponent<Item>().PickedUp = true;
+
+                    //Remove it from the scene with script intact, so that we can still modify the values.
+                    itemGameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    itemGameObject.GetComponent<Collider2D>().enabled = false;
+
+                    //Call the onPickup function for the item, for it do disable any other renderers.
+
+                    itemGameObject.GetComponent<Item>().OnPickup();
                     
 
                     slot[i].GetComponent<Slot>().UpdateSlot();

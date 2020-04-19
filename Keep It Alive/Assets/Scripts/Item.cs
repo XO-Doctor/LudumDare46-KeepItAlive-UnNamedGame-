@@ -10,8 +10,15 @@ public class Item : MonoBehaviour
     public Sprite Icon;
     public bool Stackable;
 
+    public bool PickedUp;
+
     public virtual bool AddToMixture(Chemical Chemical)
     {
         return false;
+    }
+
+    public virtual void OnPickup()
+    {
+        //only here to be overwritten
     }
 }
