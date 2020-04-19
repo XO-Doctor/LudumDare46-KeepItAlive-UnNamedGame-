@@ -9,4 +9,9 @@ public class Item : MonoBehaviour
     public string Description;
     public Sprite Icon;
     public bool Stackable;
+
+    public virtual bool AddToMixture(Chemical Chemical)
+    {
+        return false;
+    }
 }

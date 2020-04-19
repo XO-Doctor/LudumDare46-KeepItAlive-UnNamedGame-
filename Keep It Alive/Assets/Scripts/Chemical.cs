@@ -49,7 +49,9 @@ public class Chemical : Item
 
     }
 
-    public bool AddToMixture(Chemical Chemical)     //Returns false if failed
+
+
+    public override bool AddToMixture(Chemical Chemical)     //Returns false if failed
     {
         //Test if solid
         if (Chemical.Solid == true)
