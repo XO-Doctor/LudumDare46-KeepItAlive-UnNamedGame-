@@ -11,9 +11,7 @@ public class Player : MonoBehaviour
     public bool Dpressed;
 
     public float Speed;
-
-    private bool isMovingVertically = false;
-    private bool isMovingHorizontally = false;
+    
 
     public int direction;
 
@@ -84,17 +82,10 @@ public class Player : MonoBehaviour
         }
 
         Vector2 movement = Vector2.zero;
-        if(direction == 1 || direction == 3)
-        {
-            movement += (vertical * Vector2.up).normalized;
-        }
-        if (direction == 2 || direction == 4)
-        {
-            movement += (horizontal * Vector2.right).normalized;
-        }
-       
         
+        movement += (vertical * Vector2.up).normalized;
        
+        movement += (horizontal * Vector2.right).normalized;
         
 
         //Move

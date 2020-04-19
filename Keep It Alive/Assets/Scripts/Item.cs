@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new item", menuName = "item")]
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
     
     public string Name;

@@ -36,9 +36,9 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("iteta");
             GameObject itempickedup = collision.gameObject;
-            ItemObject itemobject = itempickedup.GetComponent<ItemObject>();
+            Item itemobject = itempickedup.GetComponent<Item>();
 
-            AddItem(itempickedup, itemobject.item.Name, itemobject.item.Description, itemobject.item.Icon, itemobject.item.Stackable, itempickedup);
+            AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup);
         }
 
         void AddItem(GameObject itemObject, string Itemname, string ItemDescription, Sprite ItemIcon, bool stackable, GameObject itemGameObject)

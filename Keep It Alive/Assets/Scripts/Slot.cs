@@ -18,7 +18,6 @@ public class Slot : MonoBehaviour
     public Sprite icon;
     public bool stackable;
 
-
     private void Start()
     {
         Button button = this.GetComponent<Button>();
@@ -67,6 +66,7 @@ public class Slot : MonoBehaviour
         {
             if (swap.holding)
             {
+                
                 item = swap.item;
                 GameObject parenteditem = Instantiate(item, transform);
                 if(transform.childCount > 2)
@@ -123,7 +123,7 @@ public class Slot : MonoBehaviour
             }
             else
             {
-                if (Itemname == swap.itemname)
+                if (item == swap.item)
                 {
                     swap.amount++;
                     empty = true;

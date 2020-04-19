@@ -83,7 +83,7 @@ public class useItems : MonoBehaviour
             if (!slots[selectedslot].GetComponent<Slot>().empty)
             {
                 GameObject go = slots[selectedslot].transform.GetChild(2).gameObject;
-                Item scriptableitem = go.GetComponent<ItemObject>().item;
+                Item item = go.GetComponent<Item>();
                
                 
             }
