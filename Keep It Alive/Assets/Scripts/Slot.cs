@@ -16,6 +16,7 @@ public class Slot : MonoBehaviour
     public bool solid;
     public Sprite liquidSP;
     public Sprite liquidCube;
+    public GameObject liquid;
 
     public Transform sloticonGO;
     public Text text;
@@ -169,13 +170,24 @@ public class Slot : MonoBehaviour
     {
         sloticonGO.GetComponent<Image>().enabled = true;
         sloticonGO.GetComponent<Image>().sprite = icon;
-        text.text = amount.ToString();
-        if (!swap.solid)
+        if(item != null)
         {
-            GameObject liquid = Instantiate(sloticonGO.gameObject, sloticonGO.transform);
-            liquid.GetComponent<Image>().enabled = true;
-            liquid.GetComponent<Image>().sprite = liquidSP;
+            col = item.GetComponent<Chemical>().Color;
+        }
+        text.text = amount.ToString();
+        if(sloticonGO.childCount != 0)
+        {
             liquid.GetComponent<Image>().color = col;
+        }
+        else
+        {
+            if (!swap.solid)
+            {
+                liquid = Instantiate(sloticonGO.gameObject, sloticonGO.transform);
+                liquid.GetComponent<Image>().enabled = true;
+                liquid.GetComponent<Image>().sprite = liquidSP;
+                liquid.GetComponent<Image>().color = col;
+            }
         }
     }
 }

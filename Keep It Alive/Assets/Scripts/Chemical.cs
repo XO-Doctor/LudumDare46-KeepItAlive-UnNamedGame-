@@ -137,7 +137,7 @@ public class Chemical : Item
             EffectIntensities.Add(chemical.EffectIntensities[i]);
         }
 
-
+        
 
         newR = newR * 0.5f;
         newG = newG * 0.5f;

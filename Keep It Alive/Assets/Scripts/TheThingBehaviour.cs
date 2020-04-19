@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class TheThingBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float temperature;
+    public float PH;
+    public float hunger;
+    public float Pressure;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
