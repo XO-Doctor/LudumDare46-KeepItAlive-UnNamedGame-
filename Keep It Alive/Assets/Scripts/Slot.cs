@@ -19,7 +19,6 @@ public class Slot : MonoBehaviour
     public GameObject liquid;
 
     public Transform sloticonGO;
-    public Text text;
     public Sprite icon;
     public bool stackable;
 
@@ -29,7 +28,6 @@ public class Slot : MonoBehaviour
     {
         Button button = this.GetComponent<Button>();
         sloticonGO = transform.GetChild(0);
-        text = transform.GetChild(1).GetComponent<Text>();
         sloticonGO.GetComponent<Image>().enabled = false;
     }
 
@@ -41,7 +39,6 @@ public class Slot : MonoBehaviour
         description = null;
         amount = 0;
         empty = true;
-        text.text = 0.ToString();
         icon = null;
         sloticonGO.GetComponent<Image>().enabled = false;
         if(sloticonGO.childCount != 0)
@@ -113,7 +110,6 @@ public class Slot : MonoBehaviour
                         sloticonGO.GetComponent<Image>().enabled = true;
                         sloticonGO.GetComponent<Image>().sprite = liquidCube;
                         sloticonGO.GetComponent<Image>().color = col;
-                        text.text = amount.ToString();
                     }
                     else
                     {
@@ -191,14 +187,13 @@ public class Slot : MonoBehaviour
         {
             col = item.GetComponent<Chemical>().Color;
         }
-        text.text = amount.ToString();
         if(sloticonGO.childCount != 0)
         {
             liquid.GetComponent<Image>().color = col;
         }
         else
         {
-            if (!swap.solid)
+            if (!solid)
             {
                 liquid = Instantiate(sloticonGO.gameObject, sloticonGO.transform);
                 liquid.GetComponent<Image>().enabled = true;
