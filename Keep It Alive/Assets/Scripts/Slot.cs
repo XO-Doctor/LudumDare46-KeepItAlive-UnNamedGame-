@@ -127,6 +127,7 @@ public class Slot : MonoBehaviour
                         empty = false;
                         sloticonGO.GetComponent<Image>().enabled = true;
                         sloticonGO.GetComponent<Image>().sprite = icon;
+                        sloticonGO.GetComponent<Image>().color = Color.white;
                     }
                 }
             }

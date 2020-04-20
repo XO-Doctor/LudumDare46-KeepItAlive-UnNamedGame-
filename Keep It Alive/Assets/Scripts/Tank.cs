@@ -219,11 +219,9 @@ public class Tank : MonoBehaviour
 
             Hunger += chem.hunger;
 
-            PH += chem.PH;  
-            PH *= 0.5f;
+            PH += chem.PH;
 
             Temperature += chem.Temperature;
-            Temperature *= 0.5f;
             
             for (int i = 0; i < chem.Effects.Count; i++)
             {

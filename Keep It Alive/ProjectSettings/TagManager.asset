@@ -10,6 +10,7 @@ TagManager:
   - Fridge
   - Cupboard
   - Cupboard2
+  - Acidinato
   layers:
   - Default
   - TransparentFX

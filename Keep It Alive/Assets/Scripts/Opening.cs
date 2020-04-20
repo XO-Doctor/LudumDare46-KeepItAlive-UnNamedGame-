@@ -9,6 +9,7 @@ public class Opening : MonoBehaviour
     public GameObject FridgeGO;
     public GameObject CupboardGO;
     public GameObject CupboardtwoGO;
+    public GameObject AcidinatoGO;
     public GameObject EtoUse;
 
     public void OnTriggerStay2D(Collider2D collision)
@@ -58,6 +59,15 @@ public class Opening : MonoBehaviour
                 CupboardtwoGO.SetActive(true);
             }
         }
+        if (collision.tag == "Acidinato")
+        {
+            EtoUse.SetActive(true);
+            EtoUse.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 1, 0);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                AcidinatoGO.SetActive(true);
+            }
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -86,6 +96,11 @@ public class Opening : MonoBehaviour
         {
             EtoUse.SetActive(false);
             CupboardtwoGO.SetActive(false);
+        }
+        if (collision.tag == "Acidinato")
+        {
+            EtoUse.SetActive(false);
+            AcidinatoGO.SetActive(false);
         }
     }
 }
