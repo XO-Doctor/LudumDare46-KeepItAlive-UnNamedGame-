@@ -124,14 +124,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Noodle Box
   Description: A box of instant noodles. The monster will probably like this.
-  Icon: {fileID: 0}
+  Icon: {fileID: 8285215595028396028, guid: 2723d9e77dc3498478015d9761d497b3, type: 3}
   Stackable: 0
   PickedUp: 0
   Temperature: 20
   hunger: 10
   PH: 0.2
   Solid: 1
-  Color: {r: 1, g: 0.90330195, b: 0.6132076, a: 0}
+  Color: {r: 1, g: 0.90330195, b: 0.6132076, a: 0.9490196}
   liquidSPRITE: {fileID: 0}
   BurnTemperature: 0
   FreezeTemperature: 0
