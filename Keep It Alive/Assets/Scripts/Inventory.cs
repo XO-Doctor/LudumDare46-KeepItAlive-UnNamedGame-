@@ -14,6 +14,9 @@ public class Inventory : MonoBehaviour
 
     public GameObject visibleslots;
 
+    public AudioClip Pickup;
+    public AudioSource AudioSauce;
+
     void Start()
     {
 
@@ -55,6 +58,10 @@ public class Inventory : MonoBehaviour
                             GameObject itempickedup = hit.collider.gameObject;
                             Item itemobject = itempickedup.GetComponent<Item>();
                             Chemical itemchem = itempickedup.GetComponent<Chemical>();
+
+                            //audio here
+                            AudioSauce.clip = Pickup;
+                            AudioSauce.Play();
 
                             AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup, itemchem.Color, itemchem.Solid, itemchem.liquidSPRITE);
                         }

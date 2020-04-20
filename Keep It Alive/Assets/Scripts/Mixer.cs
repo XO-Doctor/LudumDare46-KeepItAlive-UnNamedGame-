@@ -10,6 +10,9 @@ public class Mixer : MonoBehaviour
 
     public Image acidible;
 
+    public AudioClip Clip;
+    public AudioSource Source;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,10 @@ public class Mixer : MonoBehaviour
 
                 if(output.AddToMixture(input) == true)
                 {
+
+                    Source.clip = Clip;
+                    Source.Play();
+
                     Input.clearSlot();
                     Output.UpdateSlot();
                 }

@@ -20,6 +20,9 @@ public class Tank : MonoBehaviour
     public List<Effects> effects = new List<Effects>();
     public List<int> intensities = new List<int>();
 
+    public AudioClip Clip;
+    public AudioSource Source;
+
     public TextMeshPro stats;
 
     public TextMeshProUGUI HungerTE;
@@ -256,6 +259,10 @@ public class Tank : MonoBehaviour
 
             Temperature += chem.Temperature;
             Temperature *= 0.5f;
+
+            Source.clip = Clip;
+            Source.Play();
+
 
             for (int i = 0; i < chem.Effects.Count; i++)
             {

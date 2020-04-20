@@ -15,6 +15,11 @@ public class Opening : MonoBehaviour
 
     public Inventory inven;
 
+    public AudioSource AudioSource;
+    public AudioClip Close;
+
+
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Mixer")
@@ -55,6 +60,8 @@ public class Opening : MonoBehaviour
             {
                 CupboardGO.SetActive(true);
                 inven.pickupable = false;
+
+                
             }
         }
         if (collision.tag == "Cupboard2")
@@ -105,21 +112,47 @@ public class Opening : MonoBehaviour
         }
         if (collision.tag == "Fridge")
         {
+            if(FridgeGO.activeSelf)
+            {
+                AudioSource.clip = Close;
+                AudioSource.Play();
+            }
+
             EtoUse.SetActive(false);
             FridgeGO.SetActive(false);
             inven.pickupable = true;
+
+            
         }
         if (collision.tag == "Cupboard")
         {
+            if(CupboardGO.activeSelf)
+            {
+                AudioSource.clip = Close;
+                AudioSource.Play();
+            }
             EtoUse.SetActive(false);
             CupboardGO.SetActive(false);
             inven.pickupable = true;
+
+            
+
+
         }
         if (collision.tag == "Cupboard2")
         {
+            if(CupboardtwoGO.activeSelf)
+            {
+                AudioSource.clip = Close;
+                AudioSource.Play();
+            }
+
             EtoUse.SetActive(false);
             CupboardtwoGO.SetActive(false);
             inven.pickupable = true;
+
+            
+           
         }
         if (collision.tag == "Acidinato")
         {

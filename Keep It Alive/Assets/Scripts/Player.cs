@@ -11,7 +11,11 @@ public class Player : MonoBehaviour
     public bool Dpressed;
 
     public float Speed;
-    
+
+    public AudioClip[] Footsteps;
+    public AudioSource FootstepEmitter;
+
+    int footstepTimer;
 
     public int direction;
 
@@ -42,6 +46,18 @@ public class Player : MonoBehaviour
 
         //Move
         rigidbody.velocity = movement * Speed * Time.deltaTime;
+
+        if(movement != Vector2.zero)
+        {
+            footstepTimer++;
+
+            if(footstepTimer > 10)
+            {
+                footstepTimer = 0;
+                FootstepEmitter.clip = Footsteps[Random.Range(0, Footsteps.Length)];
+                FootstepEmitter.Play();
+            }
+        }
 
 
     }
