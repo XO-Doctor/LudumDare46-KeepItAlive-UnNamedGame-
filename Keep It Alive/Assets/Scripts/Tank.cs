@@ -15,28 +15,47 @@ public class Tank : MonoBehaviour
     public Slot chemSlot;
 
     public Animator TankAnim;
-    public Effects[] effects;
-    public int[] intensities;
+    public List<Effects> effects = new List<Effects>();
+    public List<int> intensities = new List<int>();
 
     public TextMeshPro stats;
+
+    public GameObject Explosion;
+
+    bool alive = true;
+
+    int tempDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(UpdateTank());
+
+        tempDirection = 1;
     }
 
     //change everything in ienumerator
     IEnumerator UpdateTank()
     {
 
+
         yield return new WaitForSeconds(1);
 
-        Hunger -= 1;
+        if (alive)
+        {
+            Hunger -= 1;
 
-        Pressure += 1;
+            Pressure += 1;
+        }
 
         stats.text = "PH:" + PH + "  " + Temperature + "C  " + Pressure + "Pres  " + Hunger + "Hung  ";
+
+
+        TankAnim.SetFloat("PH", PH);
+        TankAnim.SetFloat("Temperature", Temperature);
+        TankAnim.SetFloat("Pressure", Pressure);
+        TankAnim.SetFloat("Hunger", Hunger);
+
 
         //Debug.Log("change settings");
         if(Hunger >= 200 || Hunger <= 0)
@@ -47,16 +66,18 @@ public class Tank : MonoBehaviour
         {
             //melt or freeze
         }
-        if (PH >= 14 || PH <= 0)
+        if (PH >= 9 || PH <= 5)
         {
             //Disintegrate
         }
-        if (Pressure >= 50 || Pressure <= 0)
+        if (Pressure >= 50 && alive)
         {
-            //Explode or implode
+            //Explode
+            Instantiate(Explosion, transform.position, Quaternion.identity);
+            alive = false;
         }
 
-        for (int i = 0; i < intensities.Length; i++)
+        for (int i = 0; i < intensities.Count; i++)
         {
             if(intensities[i] < 0)
             {
@@ -70,13 +91,28 @@ public class Tank : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < effects.Length; i++)
+        for (int i = 0; i < effects.Count; i++)
         {
-            if(effects[i] != Effects.None)
-            {
+            
                 EvaluateEffect(effects[i]);
+            
+        }
+
+
+        if(Random.Range(1,5) >= 4)
+        {
+            Temperature += tempDirection;
+        }
+
+
+        if(Random.Range(1,10) == 10)
+        {
+            if (Temperature < 16 && Temperature > 6)
+            {
+                tempDirection = -tempDirection;
             }
         }
+
 
         StartCoroutine(UpdateTank());
     }
@@ -191,8 +227,8 @@ public class Tank : MonoBehaviour
             
             for (int i = 0; i < chem.Effects.Count; i++)
             {
-                effects[effects.Length + 1] = chem.Effects[i];
-                intensities[intensities.Length + 1] = chem.EffectIntensities[i];
+                effects.Add(chem.Effects[i]);
+                intensities.Add(chem.EffectIntensities[i]);
             }
         }
     }
