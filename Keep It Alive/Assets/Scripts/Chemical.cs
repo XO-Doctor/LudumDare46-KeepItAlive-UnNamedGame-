@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum Effects
 {
+    None,
     Hot,
     Cold,
     Mutate,
