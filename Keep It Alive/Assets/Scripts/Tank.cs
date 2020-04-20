@@ -84,12 +84,12 @@ public class Tank : MonoBehaviour
 
         for (int i = 0; i < intensities.Count; i++)
         {
-            if(intensities[i] < 0)
+            if(intensities[i] > 0)
             {
                 intensities[i]--;
             }
 
-            if(intensities[i] >= 0)
+            if(intensities[i] <= 0)
             {
                 intensities[i] = 0;
                 effects[i] = 0;
@@ -227,7 +227,8 @@ public class Tank : MonoBehaviour
             PH += chem.PH;
 
             Temperature += chem.Temperature;
-            
+            Temperature *= 0.5f;
+
             for (int i = 0; i < chem.Effects.Count; i++)
             {
                 effects.Add(chem.Effects[i]);

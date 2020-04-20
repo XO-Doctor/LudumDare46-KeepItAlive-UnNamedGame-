@@ -69,19 +69,10 @@ public class Chemical : Item
 
                 //Can dissolve solid
 
-                if (Chemical.BurnTemperature > Temperature && Chemical.FreezeTemperature < Temperature)
-                {
-                    //It wont burn or freeze, add the chemical to mixture
 
                     RecalculateValues(Chemical);
                     return true;
-                }
-                else
-                {
-                    //The chemical will burn or freeze before it can be mixed in.
-                    return false;
-                }
-
+               
 
             }
             else
@@ -92,20 +83,13 @@ public class Chemical : Item
         }
         else
         {
-            if (Chemical.BurnTemperature > Temperature && Chemical.FreezeTemperature < Temperature)
-            {
-                //The chemical can mix, it's not going to evaporate or freeze
-
+           
                 //Add the chemical to mixture
                 RecalculateValues(Chemical);
 
                 return true;
-            }
-            else
-            {
-                //The chemical will burn or freeze before it can be mixed in.
-                return false;
-            }
+          
+            
 
         }
     }
@@ -129,7 +113,7 @@ public class Chemical : Item
         float newG = Color.g * Color.g;
 
         //Recalculate PH value
-        PH += (chemical.PH - 7) * (0.2f);
+        PH += chemical.PH;
 
         //Temperature
 

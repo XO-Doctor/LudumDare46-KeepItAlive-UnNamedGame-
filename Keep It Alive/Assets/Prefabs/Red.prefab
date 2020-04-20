@@ -122,12 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1153fae0823bc4db5601b578c31c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Water
-  Description: water
+  Name: Red liquid
+  Description: Tastes extremely spicy. Smells like corn.
   Icon: {fileID: 21300000, guid: 32e7570e99fca33408cd9de4a548d250, type: 3}
   Stackable: 0
   PickedUp: 0
-  Temperature: 20
+  Temperature: 25
   hunger: 0
   PH: 0
   Solid: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
   liquidSPRITE: {fileID: 21300000, guid: 13bb66d2226fb9b49ad1879a5f4450cc, type: 3}
   BurnTemperature: 100
   FreezeTemperature: 0
-  Effects: 
-  EffectIntensities: 
+  Effects: 01000000
+  EffectIntensities: 0000000000000000
   Liquid: {fileID: 2533458868379140832}
 --- !u!1 &2533458868379140839
 GameObject:
