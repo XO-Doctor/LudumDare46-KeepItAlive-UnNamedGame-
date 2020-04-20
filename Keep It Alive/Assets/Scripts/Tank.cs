@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Tank : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Tank : MonoBehaviour
     public float Pressure = 0;
     public float Hunger = 0;
     public Slot chemSlot;
+    public Camera cam;
+    public int timer;
+
+    public Player player;
 
     public Animator TankAnim;
     public List<Effects> effects = new List<Effects>();
@@ -21,6 +26,7 @@ public class Tank : MonoBehaviour
     public TextMeshProUGUI TemperatureTE;
     public TextMeshProUGUI PHTE;
     public TextMeshProUGUI PressureTE;
+    public TextMeshProUGUI timeleftTE;
 
     public GameObject Explosion;
 
@@ -32,16 +38,21 @@ public class Tank : MonoBehaviour
     void Start()
     {
         StartCoroutine(UpdateTank());
-
+        timer = 300;
         tempDirection = 1;
     }
 
     public void depressurise()
     {
-        if(Pressure >= 1)
-        {
-            Pressure--;
-        }
+        Pressure = Pressure - 5;
+    }
+
+    IEnumerator DIE()
+    {
+        player.transform.gameObject.SetActive(false);
+        cam.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene(3);
     }
 
     //change everything in ienumerator
@@ -70,23 +81,31 @@ public class Tank : MonoBehaviour
         TemperatureTE.text = Temperature.ToString();
         PHTE.text = PH.ToString();
         PressureTE.text = Pressure.ToString();
+        timeleftTE.text = timer.ToString();
+
+        timer--;
+
+        if(timer == 0)
+        {
+            
+        }
 
         //Debug.Log("change settings");
         if (Hunger >= 200 || Hunger <= 0)
         {
-            //die
+            StartCoroutine(DIE());
         }
         if (Temperature >= 40 || Temperature <= 0)
         {
-            //melt or freeze
+            StartCoroutine(DIE());
         }
-        if (PH >= 9 || PH <= 5)
+        if (PH >= 14 || PH <= 0)
         {
-            //Disintegrate
+            StartCoroutine(DIE());
         }
         if (Pressure >= 50 && alive)
         {
-            //Explode
+            StartCoroutine(DIE());
             Instantiate(Explosion, transform.position, Quaternion.identity);
             alive = false;
         }
