@@ -17,6 +17,11 @@ public class Tank : MonoBehaviour
 
     public TextMeshPro stats;
 
+    public TextMeshProUGUI HungerTE;
+    public TextMeshProUGUI TemperatureTE;
+    public TextMeshProUGUI PHTE;
+    public TextMeshProUGUI PressureTE;
+
     public GameObject Explosion;
 
     bool alive = true;
@@ -61,9 +66,13 @@ public class Tank : MonoBehaviour
         TankAnim.SetFloat("Pressure", Pressure);
         TankAnim.SetFloat("Hunger", Hunger);
 
+        HungerTE.text = Hunger.ToString();
+        TemperatureTE.text = Temperature.ToString();
+        PHTE.text = PH.ToString();
+        PressureTE.text = Pressure.ToString();
 
         //Debug.Log("change settings");
-        if(Hunger >= 200 || Hunger <= 0)
+        if (Hunger >= 200 || Hunger <= 0)
         {
             //die
         }

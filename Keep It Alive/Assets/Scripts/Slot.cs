@@ -17,6 +17,7 @@ public class Slot : MonoBehaviour
     public Sprite liquidSP;
     public Sprite liquidCube;
     public GameObject liquid;
+    public bool nosolid;
 
     public Transform sloticonGO;
     public Sprite icon;
@@ -113,21 +114,24 @@ public class Slot : MonoBehaviour
                     }
                     else
                     {
-                        item = swap.item;
-                        liquidSP = swap.liquidSPR;
-                        col = swap.col;
-                        solid = swap.solid;
-                        Itemname = swap.itemname;
-                        type = swap.itemType;
-                        description = swap.desription;
-                        icon = swap.icon;
-                        stackable = swap.stackable;
-                        swap.holding = false;
-                        amount = swap.amount;
-                        empty = false;
-                        sloticonGO.GetComponent<Image>().enabled = true;
-                        sloticonGO.GetComponent<Image>().sprite = icon;
-                        sloticonGO.GetComponent<Image>().color = Color.white;
+                        if (!nosolid)
+                        {
+                            item = swap.item;
+                            liquidSP = swap.liquidSPR;
+                            col = swap.col;
+                            solid = swap.solid;
+                            Itemname = swap.itemname;
+                            type = swap.itemType;
+                            description = swap.desription;
+                            icon = swap.icon;
+                            stackable = swap.stackable;
+                            swap.holding = false;
+                            amount = swap.amount;
+                            empty = false;
+                            sloticonGO.GetComponent<Image>().enabled = true;
+                            sloticonGO.GetComponent<Image>().sprite = icon;
+                            sloticonGO.GetComponent<Image>().color = Color.white;
+                        }
                     }
                 }
             }

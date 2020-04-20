@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PotionDisplay : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class PotionDisplay : MonoBehaviour
     public Sprite SelectedSprite;
     public bool active;
     public Tank tank;
+    public GameObject actualDisplay;
+
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Hunger;
+    public TextMeshProUGUI Temperature;
+    public TextMeshProUGUI PH;
+    public TextMeshProUGUI Description;
 
     private void Start()
     {
@@ -62,6 +70,11 @@ public class PotionDisplay : MonoBehaviour
             if (!slots[selectedslot].GetComponent<Slot>().empty)
             {
                 calculate();
+                Name.text = slots[selectedslot].GetComponent<Slot>().item.GetComponent<Chemical>().Name;
+                Hunger.text = slots[selectedslot].GetComponent<Slot>().item.GetComponent<Chemical>().hunger.ToString();
+                Temperature.text = slots[selectedslot].GetComponent<Slot>().item.GetComponent<Chemical>().Temperature.ToString();
+                PH.text = slots[selectedslot].GetComponent<Slot>().item.GetComponent<Chemical>().PH.ToString();
+                Description.text = slots[selectedslot].GetComponent<Slot>().item.GetComponent<Chemical>().Description;
             }
         }
 
@@ -70,7 +83,7 @@ public class PotionDisplay : MonoBehaviour
             if (!active)
             {
                 active = true;
-                display.transform.gameObject.SetActive(true);
+                actualDisplay.transform.gameObject.SetActive(true);
                 if (!slots[selectedslot].GetComponent<Slot>().empty)
                 {
                     calculate();
@@ -79,7 +92,7 @@ public class PotionDisplay : MonoBehaviour
             else
             {
                 active = false;
-                display.transform.gameObject.SetActive(false);
+                actualDisplay.transform.gameObject.SetActive(false);
             }
         }
 
@@ -105,7 +118,7 @@ public class PotionDisplay : MonoBehaviour
             {
                 display.transform.GetChild(i).GetComponent<Slider>().value = tank.PH;
                 Transform slider = display.transform.GetChild(i);
-                slider.GetChild(0).GetComponent<Slider>().value = (tank.PH + slots[selectedslot].GetComponent<Slot>().item.gameObject.GetComponent<Chemical>().PH) / 2;
+                slider.GetChild(0).GetComponent<Slider>().value = (tank.PH + slots[selectedslot].GetComponent<Slot>().item.gameObject.GetComponent<Chemical>().PH);
             }
         }
     }

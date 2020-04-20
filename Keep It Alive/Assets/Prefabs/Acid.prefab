@@ -122,21 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1153fae0823bc4db5601b578c31c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Acid
+  Name: New Mixture
   Description: Low PH means high damage
   Icon: {fileID: 21300000, guid: 32e7570e99fca33408cd9de4a548d250, type: 3}
   Stackable: 0
   PickedUp: 1
-  Temperature: 20
+  Temperature: 19
   hunger: 5
-  PH: -5
+  PH: -5.5
   Solid: 0
-  Color: {r: 0.57857037, g: 0.9150943, b: 0.37121752, a: 0.9137255}
+  Color: {r: 1, g: 0.88476926, b: 0.39607847, a: 0.8962522}
   liquidSPRITE: {fileID: 21300000, guid: 13bb66d2226fb9b49ad1879a5f4450cc, type: 3}
   BurnTemperature: 100
   FreezeTemperature: 0
-  Effects: 06000000
-  EffectIntensities: 02000000
+  Effects: 0600000006000000
+  EffectIntensities: 0200000000000000
   Liquid: {fileID: 2180225151702570698}
 --- !u!1 &716142498855087805
 GameObject:
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 13bb66d2226fb9b49ad1879a5f4450cc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8169283, g: 0.7690909, b: 0.26661155, a: 0.8962522}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

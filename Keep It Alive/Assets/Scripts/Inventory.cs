@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public GameObject inventory;
     private bool inventoryEnabled;
+    public bool pickupable;
 
     private int allSlots;
     private int enabledSlots;
@@ -15,6 +16,9 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+
+        pickupable = true;
+
         allSlots = 5;
         slot = new GameObject[allSlots];
 
@@ -33,19 +37,28 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (pickupable)
         {
-
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                if(hit.collider.tag == "item")
-                {
-                    GameObject itempickedup = hit.collider.gameObject;
-                    Item itemobject = itempickedup.GetComponent<Item>();
-                    Chemical itemchem = itempickedup.GetComponent<Chemical>();
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-                    AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup, itemchem.Color, itemchem.Solid, itemchem.liquidSPRITE);
+                if (hit.collider != null)
+                {
+                    Debug.Log(Vector2.Distance(transform.position, hit.collider.transform.position));
+
+                    if(Vector2.Distance(transform.position, hit.collider.transform.position) <= 2)
+                    {
+
+                        if (hit.collider.tag == "item")
+                        {
+                            GameObject itempickedup = hit.collider.gameObject;
+                            Item itemobject = itempickedup.GetComponent<Item>();
+                            Chemical itemchem = itempickedup.GetComponent<Chemical>();
+
+                            AddItem(itempickedup, itemobject.Name, itemobject.Description, itemobject.Icon, itemobject.Stackable, itempickedup, itemchem.Color, itemchem.Solid, itemchem.liquidSPRITE);
+                        }
+                    }
                 }
             }
         }

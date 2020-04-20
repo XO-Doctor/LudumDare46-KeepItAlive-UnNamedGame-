@@ -64,7 +64,7 @@ public class Chemical : Item
         //Test if solid
         if (Chemical.Solid == true)
         {
-            if (PH < 5 || PH > 9)
+            if (PH < -2 || PH > 2)
             {
 
                 //Can dissolve solid
