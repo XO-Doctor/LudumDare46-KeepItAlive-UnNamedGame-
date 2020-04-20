@@ -41,13 +41,6 @@ public class PotionDisplay : MonoBehaviour
                 selectedslot++;
                 slots[selectedslot].GetComponent<Image>().sprite = SelectedSprite;
             }
-            if (active)
-            {
-                if (!slots[selectedslot].GetComponent<Slot>().empty)
-                {
-                    calculate();
-                }
-            }
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
@@ -62,12 +55,13 @@ public class PotionDisplay : MonoBehaviour
                 selectedslot--;
                 slots[selectedslot].GetComponent<Image>().sprite = SelectedSprite;
             }
-            if (active)
+        }
+
+        if (active)
+        {
+            if (!slots[selectedslot].GetComponent<Slot>().empty)
             {
-                if (!slots[selectedslot].GetComponent<Slot>().empty)
-                {
-                    calculate();
-                }
+                calculate();
             }
         }
 

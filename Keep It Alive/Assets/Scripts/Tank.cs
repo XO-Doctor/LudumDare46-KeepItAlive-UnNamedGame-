@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-
-
 public class Tank : MonoBehaviour
 {
     public float PH = 7;
@@ -32,6 +29,14 @@ public class Tank : MonoBehaviour
         StartCoroutine(UpdateTank());
 
         tempDirection = 1;
+    }
+
+    public void depressurise()
+    {
+        if(Pressure >= 1)
+        {
+            Pressure--;
+        }
     }
 
     //change everything in ienumerator
