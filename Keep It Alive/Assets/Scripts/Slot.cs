@@ -79,6 +79,10 @@ public class Slot : MonoBehaviour
             {
                 if (!mixernaterTop)
                 {
+                    if(tag == "NoSolid")
+                    {
+                        Debug.Log("hello there");
+                    }
                     item = swap.item;
                     liquidSP = swap.liquidSPR;
                     col = swap.col;
@@ -118,7 +122,6 @@ public class Slot : MonoBehaviour
                     else
                     {
                         item = swap.item;
-                        liquidSP = swap.liquidSPR;
                         col = swap.col;
                         solid = swap.solid;
                         Itemname = swap.itemname;
@@ -198,7 +201,7 @@ public class Slot : MonoBehaviour
         }
         else
         {
-            if (!swap.solid)
+            if (!solid)
             {
                 liquid = Instantiate(sloticonGO.gameObject, sloticonGO.transform);
                 liquid.GetComponent<Image>().enabled = true;
